@@ -9,21 +9,63 @@ enum RadioMessage {
 input.onLogoEvent(TouchButtonEvent.LongPressed, function () {
     for (let index = 0; index <= 3; index++) {
         radio.setGroup(index)
-        radio.sendMessage(RadioMessage.toggle_pause)
+        radio.sendMessage(RadioMessage.play_sound)
     }
+    basic.showLeds(`
+        # # # # #
+        # . . . #
+        # . . . #
+        # . . . #
+        # # # # #
+        `)
 })
 input.onButtonPressed(Button.A, function () {
+    radio.sendMessage(RadioMessage.increase_db)
+    basic.showLeds(`
+        . . # . .
+        . . # . .
+        # # # # #
+        . . # . .
+        . . # . .
+        `)
+})
+input.onButtonPressed(Button.AB, function () {
     for (let index = 0; index <= 3; index++) {
         radio.setGroup(index)
-        radio.sendMessage(RadioMessage.play_sound)
+        radio.sendMessage(RadioMessage.toggle_pause)
+    }
+    basic.showString("toggle")
+    running = !(running)
+    if (running) {
+        basic.showString("R")
+    } else {
+        basic.showString("P")
     }
 })
 input.onButtonPressed(Button.B, function () {
+    radio.sendMessage(RadioMessage.decrease_db)
+    basic.showLeds(`
+        . . . . .
+        . . . . .
+        # # # # #
+        . . . . .
+        . . . . .
+        `)
+})
+input.onLogoEvent(TouchButtonEvent.Touched, function () {
     for (let index = 0; index <= 3; index++) {
         radio.setGroup(index)
         radio.sendMessage(RadioMessage.kill_sound)
     }
+    basic.showLeds(`
+        # . . . #
+        . # . # .
+        . . # . .
+        . # . # .
+        # . . . #
+        `)
 })
+let running = false
 basic.showString("coach")
 basic.clearScreen()
 basic.showString("P")
@@ -32,4 +74,4 @@ radio.setTransmitPower(7)
 let serial_numbers: number[] = []
 let recent_time: number[] = []
 let dB_threshold = -65
-let running = false
+running = false
