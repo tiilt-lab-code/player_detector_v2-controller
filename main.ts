@@ -30,18 +30,6 @@ input.onButtonPressed(Button.A, function () {
         . . # . .
         `)
 })
-input.onButtonPressed(Button.AB, function () {
-    for (let index2 = 0; index2 <= 3; index2++) {
-        radio.setGroup(index2)
-        radio.sendMessage(RadioMessage.toggle_pause)
-    }
-    running = !(running)
-    if (running) {
-        basic.showString("R")
-    } else {
-        basic.showString("P")
-    }
-})
 input.onButtonPressed(Button.B, function () {
     radio.sendMessage(RadioMessage.decrease_db)
     basic.showLeds(`
@@ -65,11 +53,10 @@ input.onLogoEvent(TouchButtonEvent.Touched, function () {
         # . . . #
         `)
 })
-let running = false
 let recent_time: number[] = []
 let serial_numbers: number[] = []
 basic.showString("P")
 radio.setTransmitSerialNumber(true)
 radio.setTransmitPower(7)
 let dB_threshold = -65
-running = false
+let running = false
