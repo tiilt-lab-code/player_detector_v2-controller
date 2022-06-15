@@ -21,24 +21,28 @@ input.onLogoEvent(TouchButtonEvent.LongPressed, function () {
         `)
 })
 input.onButtonPressed(Button.A, function () {
-    radio.sendMessage(RadioMessage.increase_db)
-    basic.showLeds(`
-        . . # . .
-        . . # . .
-        # # # # #
-        . . # . .
-        . . # . .
-        `)
+    for (let index = 0; index <= 3; index++) {
+        radio.sendMessage(RadioMessage.increase_db)
+        basic.showLeds(`
+            . . # . .
+            . . # . .
+            # # # # #
+            . . # . .
+            . . # . .
+            `)
+    }
 })
 input.onButtonPressed(Button.B, function () {
-    radio.sendMessage(RadioMessage.decrease_db)
-    basic.showLeds(`
-        . . . . .
-        . . . . .
-        # # # # #
-        . . . . .
-        . . . . .
-        `)
+    for (let index = 0; index <= 3; index++) {
+        radio.sendMessage(RadioMessage.decrease_db)
+        basic.showLeds(`
+            . . . . .
+            . . . . .
+            # # # # #
+            . . . . .
+            . . . . .
+            `)
+    }
 })
 input.onLogoEvent(TouchButtonEvent.Touched, function () {
     for (let index3 = 0; index3 <= 3; index3++) {
