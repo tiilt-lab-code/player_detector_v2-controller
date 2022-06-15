@@ -22,6 +22,7 @@ input.onLogoEvent(TouchButtonEvent.LongPressed, function () {
 })
 input.onButtonPressed(Button.A, function () {
     for (let index = 0; index <= 3; index++) {
+        radio.setGroup(index)
         radio.sendMessage(RadioMessage.increase_db)
         basic.showLeds(`
             . . # . .
@@ -34,6 +35,7 @@ input.onButtonPressed(Button.A, function () {
 })
 input.onButtonPressed(Button.B, function () {
     for (let index = 0; index <= 3; index++) {
+        radio.setGroup(index)
         radio.sendMessage(RadioMessage.decrease_db)
         basic.showLeds(`
             . . . . .
